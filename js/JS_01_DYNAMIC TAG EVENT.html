@@ -1,0 +1,64 @@
+
+<html>
+    <head>
+        <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                
+                /*a
+                *   기본 이벤트 걸기 
+                */
+                $("[id=btn1]").on("click", function(){
+                    var wrap = $(this).parent()
+                    var clone = $(this).clone()
+                    clone[0].value += 1
+                    wrap.append(clone)
+                })
+
+                /*
+                *   복수 이벤트 걸기 
+                */
+                $("[id^=btn]").on("click", function(){
+                    var wrap = $(this).parent()
+                    var clone = $(this).clone()
+                    clone[0].value += 1
+                    wrap.append(clone)
+                })
+
+                /*
+                *   동적(영역) 이벤트 걸기 
+                */
+                $("#wrap1").on("click", "[id^=btn]", function(){
+                    var wrap = $(this).parent()
+                    var clone = $(this).clone()
+                    clone[0].value += 1
+                    wrap.append(clone)
+                })
+
+                /*
+                *   동적(전체) 이벤트 걸기 
+                */
+                $(document).on("click", "[id^=btn]", function(){
+                    var wrap = $(this).parent()
+                    var clone = $(this).clone()
+                    clone[0].value += 1
+                    wrap.append(clone)
+                })
+
+            });
+        </script>
+    </head>
+
+    <body>
+        <div id="wrap1">
+            <input type="button" id="btn1" name="btn1" class="btn1" value="1">
+        </div>
+        <br><br>
+        <div id="wrap2">
+            <input type="button" id="btn2" name="btn2" class="btn2" value="2">
+        </div>
+    </body>
+
+</html>
+
+
