@@ -5,15 +5,15 @@
         <script>
             $(document).ready(function(){
                 
-                /*a
+                /*
                 *   기본 이벤트 걸기 
                 */
-                $("[id=btn1]").on("click", function(){
+                 $("[id=btn1]").on("click", function(){
                     var wrap = $(this).parent()
                     var clone = $(this).clone()
                     clone[0].value += 1
                     wrap.append(clone)
-                })
+                }) 
 
                 /*
                 *   복수 이벤트 걸기 
@@ -24,25 +24,41 @@
                     clone[0].value += 1
                     wrap.append(clone)
                 })
-
+ 
                 /*
-                *   동적(영역) 이벤트 걸기 
+                *   동적(영역) + 복수 이벤트 걸기 
                 */
-                $("#wrap1").on("click", "[id^=btn]", function(){
+                 $("#wrap1").on("click", "[id^=btn]", function(){
                     var wrap = $(this).parent()
                     var clone = $(this).clone()
                     clone[0].value += 1
                     wrap.append(clone)
                 })
-
+ 
                 /*
-                *   동적(전체) 이벤트 걸기 
+                *   동적(전체) + 복수 이벤트 걸기 
                 */
-                $(document).on("click", "[id^=btn]", function(){
+                 $(document).on("click", "[id^=btn]", function(){
                     var wrap = $(this).parent()
                     var clone = $(this).clone()
                     clone[0].value += 1
                     wrap.append(clone)
+                }) 
+                  
+
+                /*
+                *   사용자 지정태그로 특정 값일때 특정 이벤트 실행하기 
+                */
+                $(document).find("[data-ref]").each(function(e){
+                    if($(this).attr("data-ref") == "iron"){
+                        $(this).on("click", function(){
+                            console.log("I'm iron Man");
+                        })
+                    }else if($(this).attr("data-ref") == "good"){
+                        $(this).on("click", function(){
+                            alert("I'm good Man");
+                        })
+                    }
                 })
 
             });
@@ -57,7 +73,20 @@
         <div id="wrap2">
             <input type="button" id="btn2" name="btn2" class="btn2" value="2">
         </div>
+
+
+        <br><br>
+        <div id="wrap3">
+            <input type="button" id="btn1" name="btn1" class="btn1" value="1" data-ref="iron">
+        </div>
+        <br><br>
+        <div id="wrap4">
+            <input type="button" id="btn2" name="btn2" class="btn2" value="2" data-ref="good">
+        </div>
     </body>
+    </body>
+
+    
 
 </html>
 
